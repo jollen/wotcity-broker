@@ -1,0 +1,19 @@
+{
+  "name": "mbed-taiwan-channel",
+  "version": "0.0.0",
+  "description": "websocket channel",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "websocket": "^1.0.17"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "jollen <jollen@jollen.org> (http://jollen.org/)",
+  "license": "MIT"
+}
