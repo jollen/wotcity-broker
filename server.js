@@ -67,6 +67,8 @@ function start(route, handlers) {
   function onWsConnect(webSocketConnection) {
     console.log("WebSocket connection accepted.");
 
+    console.log(webSocketConnection.currentFrame.config.httpServer);
+
     // Save clients (unlimited clients)
     clients.push(webSocketConnection);
 
