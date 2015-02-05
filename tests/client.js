@@ -30,4 +30,4 @@ client.on('connect', function(connection) {
     sendNumber();
 });
 
-client.connect('ws://svn.moko365.com:8888/', 'echo-protocol');
+client.connect('ws://localhost:8080/', 'echo-protocol');

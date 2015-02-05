@@ -28,11 +28,15 @@ function start(route, handlers) {
     autoAcceptConnections: true
   });
 
+  function push(data) {
+    for (var i = 0; i < clients.length; i++) {
+        clients[i].sendUTF(data);
+    }
+  }
+
   function onWsConnMessage(message) {
     if (message.type == 'utf8') {
-        for (var i = 0; i < clients.length; i++) {
-            clients[i].sendUTF(message.data);
-        }
+      push(message.utf8Data);
     } else if (message.type == 'binary') {
       console.log('Received binary data.');
     }
