@@ -32,11 +32,18 @@ function start(route, handlers) {
     for (var i = 0; i < clients.length; i++) {
         clients[i].sendUTF(data);
     }
+
+    ////// Dump ////////
+    var json = JSON.parse(data);
+    console.log(json.ax + ','
+		+ json.ay + ','
+		+ json.az);
   }
 
   function onWsConnMessage(message) {
     if (message.type == 'utf8') {
       push(message.utf8Data);
+      //console.log('Received: ' + message.utf8Data);
     } else if (message.type == 'binary') {
       console.log('Received binary data.');
     }

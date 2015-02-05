@@ -30,4 +30,4 @@ client.on('connect', function(connection) {
     sendNumber();
 });
 
-client.connect('ws://localhost:8080/', 'echo-protocol');
+client.connect('ws://192.168.21.104:8080/', 'echo-protocol');
