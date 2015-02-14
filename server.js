@@ -1,6 +1,8 @@
 var http = require("http");
 var url = require("url");
+
 var WebSocketServer = require('websocket').server;
+var WebSocketRouter = require('websocket').router;
 
 // Connected WebSocket clients
 var clients = [];
@@ -10,9 +12,7 @@ function start(route, handlers) {
     var pathname = url.parse(request.url).pathname;
     var query = url.parse(request.url).query;
 
-    console.log("Request for " + pathname + " received.");
-
-    route(pathname, handlers, response, query, clients);
+    console.log("HTTP Request: " + pathname);
 
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("Hello World");
@@ -25,7 +25,7 @@ function start(route, handlers) {
 
   wsServer = new WebSocketServer({
     httpServer: server,
-    autoAcceptConnections: true
+    autoAcceptConnections: false
   });
 
   function push(data) {
@@ -54,23 +54,19 @@ function start(route, handlers) {
   }
 
   function onWsRequest(request) {
-    var connection = request.accept('mbed-taiwan', request.origin);
-    console.log("WebSocket connection accepted.");
+    var connection = request.accept('', request.origin);
+    console.log("[2]: onWsRequest");
 
-    // Save clients (unlimited clients)
-    clients.push(connection);
+    console.log("[3]: resource: " + request.resource);
+
+    route(request.resource, connection, handlers, clients);
 
     connection.on('message', onWsConnMessage);
     connection.on('close', onWsConnClose);
   }
 
   function onWsConnect(webSocketConnection) {
-    console.log("WebSocket connection accepted.");
-
-    console.log(webSocketConnection.currentFrame.config.httpServer);
-
-    // Save clients (unlimited clients)
-    clients.push(webSocketConnection);
+    console.log("[1]: onWsConnect");
 
     webSocketConnection.on('message', onWsConnMessage);
     webSocketConnection.on('close', onWsConnClose);

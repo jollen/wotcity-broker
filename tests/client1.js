@@ -25,21 +25,17 @@ client.on('connect', function(connection) {
             var number = Math.round(Math.random() * 0xFFFFFF);
             // 1 to 10
             var lucky = Math.round(Math.random() * 10 + 1);
-            //var obj = {ax: number.toString(), ay: 0, az: 0};
-            var obj = {lowpulseoccupancytime: number};
+            var obj = {ax: number.toString(), ay: 0, az: 0};
 
             if (lucky === 8)
-                //connection.sendUTF("{\"hello\": 0 }");
-                connection.sendUTF(JSON.stringify(obj));
+                connection.sendUTF("{\"hello\": 0 }");
             else
                 connection.sendUTF(JSON.stringify(obj));
 
-            console.log('Pushing: ' + JSON.stringify(obj));
-
-            setTimeout(sendNumber, 1000);
+            setTimeout(sendNumber, 5000);
         }
     }
     sendNumber();
 });
 
-client.connect('ws://localhost:8080/ws/mbedtaiwan/send', '');
+client.connect('ws://localhost:8080/ws/mbedtaiwan/viewer', 'mbed-taiwan');

@@ -1,11 +1,37 @@
-function route(pathname, handlers, response, query, clients) {
+var WebSocketRouter = require('websocket').router;
+
+var pathToRegExp = function(path) {
+    if (typeof(path) === 'string') {
+        if (path === '*') {
+            path = /^.*$/;
+        }
+        else {
+            //path = path.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+            path = new RegExp('^' + path + '$');
+        }
+    }
+    return path;
+};
+
+// 支援 websocket URL routing
+function route(pathname, connection, wsHandlers, clients) {
     console.log("Route this request: '" + pathname + "'");
 
-    // 檢查 pathname 是否有對應的 request handlers
-    if (typeof handlers[pathname] == "function") {
-        handlers[pathname](response, query, clients);
-    } else {
+    for(var path in wsHandlers) {
+      var handler = wsHandlers[path];
+      var pathExp = pathToRegExp(path);
+
+      if (!(pathExp instanceof RegExp)) {
+        throw new Error('Path must be specified as either a string or a RegExp.');
+      }
+
+      if (typeof handler === "function") {
+        if (pathExp.test(pathname)) {
+          wsHandlers[path](pathname, connection, clients);
+        }
+      } else {
         console.log("No request handler for this pathname: '" + pathname + "'");
+      }
     }
 }
 
