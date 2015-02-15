@@ -12,7 +12,7 @@ function start(route, handlers) {
     var pathname = url.parse(request.url).pathname;
     var query = url.parse(request.url).query;
 
-    console.log("HTTP Request: " + pathname);
+    //console.log("HTTP Request: " + pathname);
 
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("Hello World");
@@ -34,10 +34,7 @@ function start(route, handlers) {
     }
 
     ////// Dump ////////
-    var json = JSON.parse(data);
-    console.log(json.ax + ','
-		+ json.ay + ','
-		+ json.az);
+    //console.log( JSON.parse(data) );
   }
 
   function onWsConnMessage(message) {
@@ -50,14 +47,14 @@ function start(route, handlers) {
   }
 
   function onWsConnClose(reasonCode, description) {
-    console.log('Peer disconnected with reason: ' + reasonCode);
+    //console.log('Peer disconnected with reason: ' + reasonCode);
   }
 
   function onWsRequest(request) {
     var connection = request.accept('', request.origin);
-    console.log("[2]: onWsRequest");
+    //console.log("[2]: onWsRequest");
 
-    console.log("[3]: resource: " + request.resource);
+    //console.log("[3]: resource: " + request.resource);
 
     route(request.resource, connection, handlers, clients);
 
@@ -66,7 +63,7 @@ function start(route, handlers) {
   }
 
   function onWsConnect(webSocketConnection) {
-    console.log("[1]: onWsConnect");
+    //console.log("[1]: onWsConnect");
 
     webSocketConnection.on('message', onWsConnMessage);
     webSocketConnection.on('close', onWsConnClose);

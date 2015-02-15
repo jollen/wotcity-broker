@@ -1,5 +1,3 @@
-var WebSocketRouter = require('websocket').router;
-
 var pathToRegExp = function(path) {
     if (typeof(path) === 'string') {
         if (path === '*') {
