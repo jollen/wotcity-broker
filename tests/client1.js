@@ -38,4 +38,4 @@ client.on('connect', function(connection) {
     sendNumber();
 });
 
-client.connect('ws://localhost:8080/ws/mbedtaiwan/viewer', 'mbed-taiwan');
+client.connect('ws://wot.city/object/mbedtaiwan/viewer', '');

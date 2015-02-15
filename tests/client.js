@@ -42,4 +42,4 @@ client.on('connect', function(connection) {
     sendNumber();
 });
 
-client.connect('ws://localhost:8080/ws/mbedtaiwan/send', '');
+client.connect('ws://wot.city/object/mbedtaiwan/send', '');
