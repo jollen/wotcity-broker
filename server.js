@@ -2,7 +2,6 @@ var http = require("http");
 var url = require("url");
 
 var WebSocketServer = require('websocket').server;
-var WebSocketRouter = require('websocket').router;
 
 // Connected WebSocket clients
 var clients = [];
@@ -28,32 +27,40 @@ function start(route, handlers) {
     autoAcceptConnections: false
   });
 
-  function push(data) {
-    for (var i = 0; i < clients.length; i++) {
-        clients[i].sendUTF(data);
-    }
+  var push = function(path, data) {
+    var connections = clients[path];
 
-    ////// Dump ////////
-    //console.log( JSON.parse(data) );
+    if (typeof connections === 'undefined')
+        return;
+
+    console.log('Pushing [' + data + '] to ' + path);
+
+    for (var i = 0; i < connections.length; i++) {
+        connections[i].sendUTF(data);
+    }
   }
 
-  function onWsConnMessage(message) {
+  var onWsConnMessage = function(message) {
     if (message.type == 'utf8') {
-      push(message.utf8Data);
+      //console.log('onWsConnMessage: ' + this.pathname);
       //console.log('Received: ' + message.utf8Data);
+
+      // Is it a sender ? Yes, then push data to all viewers.
+      if (typeof (this.viewer) !== 'undefined')
+          push(this.viewer, message.utf8Data);
     } else if (message.type == 'binary') {
       console.log('Received binary data.');
     }
-  }
+  };
 
-  function onWsConnClose(reasonCode, description) {
+  var onWsConnClose = function(reasonCode, description) {
     //console.log('Peer disconnected with reason: ' + reasonCode);
-  }
+  };
 
   function onWsRequest(request) {
     var connection = request.accept('', request.origin);
-    //console.log("[2]: onWsRequest");
 
+    //console.log("[2]: onWsRequest");
     //console.log("[3]: resource: " + request.resource);
 
     route(request.resource, connection, handlers, clients);
@@ -65,8 +72,8 @@ function start(route, handlers) {
   function onWsConnect(webSocketConnection) {
     //console.log("[1]: onWsConnect");
 
-    webSocketConnection.on('message', onWsConnMessage);
-    webSocketConnection.on('close', onWsConnClose);
+    //webSocketConnection.on('message', onWsConnMessage);
+    //webSocketConnection.on('close', onWsConnClose);
   }
 
   wsServer.on('request', onWsRequest);
