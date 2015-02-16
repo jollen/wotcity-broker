@@ -33,7 +33,7 @@ function start(route, handlers) {
     if (typeof connections === 'undefined')
         return;
 
-    console.log('Pushing [' + data + '] to ' + path);
+    //console.log('Pushing [' + data + '] to ' + path);
 
     for (var i = 0; i < connections.length; i++) {
         connections[i].sendUTF(data);
