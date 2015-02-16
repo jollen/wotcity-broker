@@ -19,23 +19,6 @@ client.on('connect', function(connection) {
             console.log("Received: '" + message.utf8Data + "'");
         }
     });
-
-    function sendNumber() {
-        if (connection.connected) {
-            var number = Math.round(Math.random() * 0xFFFFFF);
-            // 1 to 10
-            var lucky = Math.round(Math.random() * 10 + 1);
-            var obj = {ax: number.toString(), ay: 0, az: 0};
-
-            if (lucky === 8)
-                connection.sendUTF("{\"hello\": 0 }");
-            else
-                connection.sendUTF(JSON.stringify(obj));
-
-            setTimeout(sendNumber, 5000);
-        }
-    }
-    sendNumber();
 });
 
-client.connect('ws://wot.city/object/mbedtaiwan/viewer', '');
+client.connect('ws://wot.city/object/test2/viewer', '');
