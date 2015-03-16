@@ -36,7 +36,7 @@ client.on('connect', function(connection) {
 
             console.log('Pushing: ' + JSON.stringify(obj));
 
-            setTimeout(sendNumber, 1000);
+            setTimeout(sendNumber, 100);
         }
     }
     sendNumber();

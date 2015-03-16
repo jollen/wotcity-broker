@@ -13,7 +13,7 @@ var pathToRegExp = function(path) {
 
 // 支援 websocket URL routing
 function route(pathname, connection, wsHandlers, clients) {
-    console.log("Route this request: '" + pathname + "'");
+    //console.log("Route this request: '" + pathname + "'");
 
     for(var path in wsHandlers) {
       var handler = wsHandlers[path];

@@ -21,4 +21,4 @@ client.on('connect', function(connection) {
     });
 });
 
-client.connect('ws://wot.city/object/test2/viewer', '');
+client.connect('ws://wot.city/object/test/viewer', '');

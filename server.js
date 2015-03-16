@@ -96,14 +96,14 @@ function start(route, handlers) {
 
   var onWsConnMessage = function(message) {
     if (message.type == 'utf8') {
-      //console.log('onWsConnMessage: ' + this.pathname);
-      //console.log('Received: ' + message.utf8Data);
+    //console.log('onWsConnMessage: ' + this.pathname);
+    //console.log('Received: ' + message.utf8Data);
 
-      // Is it a sender ? Yes, then push data to all viewers.
-      if (typeof (this.viewer) !== 'undefined')
-          push(this.viewer, message.utf8Data);
+    // Is it a sender ? Yes, then push data to all viewers.
+    if (typeof (this.viewer) !== 'undefined')
+        push(this.viewer, message.utf8Data);
     } else if (message.type == 'binary') {
-      console.log('Received binary data.');
+        console.log('Received binary data.');
     }
   };
 
