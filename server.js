@@ -65,6 +65,9 @@ function start(route, handlers) {
     //console.log("[2]: onWsRequest");
     //console.log("[3]: resource: " + request.resource);
 
+    // put worker object into connection
+    connection.worker = cluster.worker;
+
     route(request.resource, connection, handlers, clients);
 
     connection.on('message', onWsConnMessage);

@@ -1,5 +1,5 @@
 function send(pathname, connection, clients) {
-    console.log("Routed: " + pathname);
+    console.log("Routed: " + pathname + ' at worker [' + connection.worker.id + ']');
 
     // the original sender pathname
     connection.pathname = pathname;
