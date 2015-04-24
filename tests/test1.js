@@ -37,4 +37,4 @@ client.on('connect', function(connection) {
     sendNumber();
 });
 
-client.connect('ws://wot.city/object/test1/send', '');
+client.connect('ws://localhost:8001/object/55391bed5f5cd98b1500003f/send', '');

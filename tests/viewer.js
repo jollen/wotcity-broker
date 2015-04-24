@@ -21,4 +21,4 @@ client.on('connect', function(connection) {
     });
 });
 
-client.connect('ws://wot.city/object/test/viewer', '');
+client.connect('ws://wot.city/object/jollentemp1/viewer', '');

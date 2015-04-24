@@ -37,4 +37,4 @@ client.on('connect', function(connection) {
     sendNumber();
 });
 
-client.connect('ws://wot.city/object/test/send', '');
+client.connect('ws://wot.city/object/5537c1507e7407c210000008/send', '');

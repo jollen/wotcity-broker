@@ -1,12 +1,11 @@
-var server = require("./server");
-var router = require("./router");
-var handlers = require("./requestHandlers");
+var wotcity = require('./lib/wotcity');
 
-// 使用 Object 來對應 pathname 與 request handlers
-var wsHandlers = {
-   "/object/([A-Za-z0-9-]+)/send": handlers.send,
-   "/object/([A-Za-z0-9-]+)/viewer": handlers.viewer
-};
+/**
+ * Create a WoT application instance.
+ */
+var app = new wotcity();
 
-// 傳遞 request handler 
-server.start(router.route, wsHandlers);
+/**
+ * Start the Websocket broker server.
+ */
+app.start();
