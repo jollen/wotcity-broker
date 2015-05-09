@@ -1,4 +1,6 @@
-<img src="http://static.squarespace.com/static/53f1eedee4b0439bf8d480c5/t/54061d4ae4b0f4290347d846/1411419445727/?format=1500w" alt="OWR Logo" width="200" height="126">
+# DEPRECATED
+
+This project has been move to `https://github.com/wotcity/websocket-broker`.
 
 ## WoT.City
 
