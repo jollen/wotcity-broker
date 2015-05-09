@@ -1,6 +1,7 @@
 # DEPRECATED
 
-This project has been move to `https://github.com/wotcity/websocket-broker`.
+* This project has been move to `https://github.com/wotcity/websocket-broker`.
+* This project has been migrated from BSD license to Apache 2.0 license (prepare to open source).
 
 ## WoT.City
 
