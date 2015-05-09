@@ -1,8 +1,14 @@
-# WoT.City
+<img src="http://static.squarespace.com/static/53f1eedee4b0439bf8d480c5/t/54061d4ae4b0f4290347d846/1411419445727/?format=1500w" alt="OWR Logo" width="200" height="126">
+
+## WoT.City
 
 Websocket channel for ARM mbed.
 
-## How to use it
+## Install
+
+## Usage
+
+## Try *ws://wot.city*
 
 To send the data over the Internet, mbed device should use the url below to establish a connection with the server.
 
